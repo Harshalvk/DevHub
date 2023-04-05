@@ -2,7 +2,7 @@ import React from 'react'
 
 const index = () => {
   return (
-    <div className='text-white text-3xl'>Hello world</div>
+    <div className='text-sky-300 text-3xl'>Hello Harshal!</div>
   )
 }
 
