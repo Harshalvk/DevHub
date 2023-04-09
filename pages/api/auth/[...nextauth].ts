@@ -3,7 +3,7 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
-import prisma from "@/libs/prismadb"
+import prisma from "@/libs/prismadb";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -18,6 +18,7 @@ export default NextAuth({
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid credentials');
         }
+
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
@@ -35,7 +36,7 @@ export default NextAuth({
 
         if (!isCorrectPassword) {
           throw new Error('Invalid credentials');
-        }
+        } 
 
         return user;
       }
