@@ -28,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={`
-      ${hasBorder ? 'border-black' : ''}
+      ${hasBorder ? 'border-4 border-black' : ''}
       ${isLarge ? 'h-32' : 'h-12'}
       ${isLarge ? 'w-32' : 'w-12'}
       rounded-full
