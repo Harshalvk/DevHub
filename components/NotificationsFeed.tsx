@@ -1,7 +1,9 @@
+import React, { useEffect } from 'react'
+
+import { BsTwitter } from 'react-icons/bs';
+
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNotification from '@/hooks/useNotifications';
-import React, { useEffect } from 'react'
-import { BsTwitter } from 'react-icons/bs';
 
 const NotificationsFeed = () => {
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
@@ -43,7 +45,7 @@ const NotificationsFeed = () => {
         >
           <BsTwitter color='white' size={32}/>
           <p className='text-white'>
-            {notification.body}
+            {notification.body}t
           </p>
         </div>
       ))}

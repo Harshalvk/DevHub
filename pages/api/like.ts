@@ -35,6 +35,7 @@ export default async function handler(
     if (req.method === 'POST') {
       updatedLikeIds.push(currentUser.id);
 
+      // Notification call starts here
       try {
         const post = await prisma.post.findUnique({
           where: {
@@ -64,6 +65,7 @@ export default async function handler(
         console.log(error);
       }
     } 
+    // Ends here
 
     if (req.method === 'DELETE') {
       updatedLikeIds = updatedLikeIds.filter((likeId) => likeId !== currentUser.id)
