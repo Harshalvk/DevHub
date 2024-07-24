@@ -8,6 +8,7 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
+import { JsxElement } from 'typescript';
 
 const RegisterModal = () => {
   const loginModal = useLoginModal();

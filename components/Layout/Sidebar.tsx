@@ -52,7 +52,7 @@ const Sidebar = () => {
               />
           ))}
           {currentUser && (
-            <SidebarItem onClick={() => signOut()} icon={BiLogOut} label='Logout'/>  
+            <SidebarItem href='' onClick={() => signOut()} icon={BiLogOut} label='Logout'/>  
           )}
           <SidebarTweetButton/>
         </div>
