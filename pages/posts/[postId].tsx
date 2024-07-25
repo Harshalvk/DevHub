@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import { ClipLoader } from "react-spinners";
 
-import usePost from '@/hooks/usePost';
-import Header from '@/components/Header';
+import usePost from "@/hooks/usePost";
+import Header from "@/components/Header";
 import PostItem from "@/components/posts/PostItem";
 import Form from "@/components/Form";
 import CommentFeed from "@/components/posts/CommentFeed";
+import Spinner from "@/components/Spinner";
 
 const PostView = () => {
   const router = useRouter();
@@ -16,23 +16,23 @@ const PostView = () => {
   if (isLoading || !fetchedPost) {
     return (
       <div className="flex justify-center items-center h-full">
-        <ClipLoader color="lightblue" size={80}/>
+        <Spinner />
       </div>
-    )
+    );
   }
 
   return (
     <>
-      <Header label='Tweet' showBackArrow/>
-      <PostItem data={fetchedPost}/>
-      <Form 
+      <Header label="Posts" showBackArrow />
+      <PostItem data={fetchedPost} />
+      <Form
         postId={postId as string}
         isComment
         placeholder="Tweet your reply"
       />
-      <CommentFeed comments={fetchedPost?.comments}/>
+      <CommentFeed comments={fetchedPost?.comments} />
     </>
-  ) 
-}
+  );
+};
 
-export default PostView ;
+export default PostView;
