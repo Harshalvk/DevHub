@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from "react";
 
 import axios from "axios";
-import { toast } from "react-hot-toast";
-import useCurrentUser from "./useCurrentUser"
+import { toast } from "sonner";
+import useCurrentUser from "./useCurrentUser";
 import useLoginModal from "./useLoginModal";
 import usePost from "./usePost";
 import usePosts from "./usePosts";
 
-const useLike = ({ postId, userId }: { postId: string, userId?: string }) => {
+const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedPost, mutate: mutateFetchedPost } = usePost(postId);
   const { mutate: mutateFetchedPosts } = usePosts(userId);
@@ -29,25 +29,32 @@ const useLike = ({ postId, userId }: { postId: string, userId?: string }) => {
       let request;
 
       if (hasLiked) {
-        request = () => axios.delete('/api/like', {data: { postId }});
+        request = () => axios.delete("/api/like", { data: { postId } });
       } else {
-        request = () => axios.post('/api/like', { postId });
+        request = () => axios.post("/api/like", { postId });
       }
 
       await request();
       mutateFetchedPost();
       mutateFetchedPosts();
 
-      toast.success('Success');
+      toast.success("Success");
     } catch (error) {
       toast.error("Something went wrong");
     }
-  }, [ currentUser, hasLiked, postId, mutateFetchedPost, mutateFetchedPosts, loginModal]);
+  }, [
+    currentUser,
+    hasLiked,
+    postId,
+    mutateFetchedPost,
+    mutateFetchedPosts,
+    loginModal,
+  ]);
 
   return {
     hasLiked,
-    toggleLike
-  }
+    toggleLike,
+  };
 };
 
 export default useLike;
