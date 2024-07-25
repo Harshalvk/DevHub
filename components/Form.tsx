@@ -73,8 +73,8 @@ const Form: React.FC<FormPorps> = ({ placeholder, isComment, postId }) => {
               className="
                 disabled:opacity-80
                 peer
-                mt-3
                 w-full
+                mt-3
                 bg-black
                 ring-0
                 resize-none
