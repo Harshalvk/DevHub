@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 
 import useLoginModal from "@/hooks/useLoginModal";
@@ -47,6 +47,16 @@ const Form: React.FC<FormPorps> = ({ placeholder, isComment, postId }) => {
     }
   }, [body, mutatePosts, isComment, postId, mutatePost]);
 
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "0";
+      const scrollHeight = textAreaRef.current.scrollHeight;
+      textAreaRef.current.style.height = `${scrollHeight}px`;
+    }
+  }, [body]);
+
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
       {currentUser ? (
@@ -59,20 +69,22 @@ const Form: React.FC<FormPorps> = ({ placeholder, isComment, postId }) => {
               disabled={isLoading}
               onChange={(e) => setBody(e.target.value)}
               value={body}
+              rows={1}
               className="
                 disabled:opacity-80
                 peer
-                resize-none
                 mt-3
                 w-full
                 bg-black
                 ring-0
+                resize-none
                 outline-none
                 text-[20px]
                 placeholder-neutral-500
                 text-white
               "
               placeholder={placeholder}
+              ref={textAreaRef}
             ></textarea>
             <hr
               className="
