@@ -6,7 +6,7 @@ import Input from '../Input';
 import Modal from '../Modal';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 import { signIn } from 'next-auth/react';
 import { JsxElement } from 'typescript';
 
