@@ -12,6 +12,7 @@ import Avatar from "../Avatar";
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLike from "@/hooks/useLike";
+import useDeletePost from "@/hooks/useDeletePost";
 
 interface PostItemPorps {
   data: Record<string, any>;
@@ -24,6 +25,7 @@ const PostItem: React.FC<PostItemPorps> = ({ data, userId }) => {
 
   const { data: currentUser } = useCurrentUser();
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
+  const { toggleDelete } = useDeletePost({ postId: data.id, userId });
 
   const goToUser = useCallback(
     (event: any) => {
@@ -47,6 +49,20 @@ const PostItem: React.FC<PostItemPorps> = ({ data, userId }) => {
       }
 
       toggleLike();
+    },
+    [loginModal, currentUser, toggleLike]
+  );
+
+  const onDelete = useCallback(
+    (event: any) => {
+      event.stopPropagation();
+
+      if (!currentUser) {
+        return loginModal.onOpen();
+      }
+
+      toggleDelete();
+      router.push("/");
     },
     [loginModal, currentUser, toggleLike]
   );
@@ -132,7 +148,7 @@ const PostItem: React.FC<PostItemPorps> = ({ data, userId }) => {
               <p>{data.likedIds.length}</p>
             </div>
             <div
-              onClick={onLike}
+              onClick={onDelete}
               className="
               flex
               flex-row
@@ -143,7 +159,7 @@ const PostItem: React.FC<PostItemPorps> = ({ data, userId }) => {
               hover:text-red-500
             "
             >
-              <AiTwotoneDelete size={20} color={hasLiked ? "red" : ""} />
+              <AiTwotoneDelete size={20} />
             </div>
           </div>
         </div>

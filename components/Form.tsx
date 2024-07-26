@@ -9,6 +9,7 @@ import axios from "axios";
 import Button from "./Button";
 import Avatar from "./Avatar";
 import usePost from "@/hooks/usePost";
+import useDeletePost from "@/hooks/useDeletePost";
 
 interface FormPorps {
   placeholder: string;
