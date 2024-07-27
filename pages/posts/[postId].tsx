@@ -28,7 +28,7 @@ const PostView = () => {
       <Form
         postId={postId as string}
         isComment
-        placeholder="Tweet your reply"
+        placeholder="Reply"
       />
       <CommentFeed comments={fetchedPost?.comments} />
     </>
