@@ -8,7 +8,6 @@ interface LayoutProps {
 
 import Sidebar from "./Layout/Sidebar";
 import PreLoader from "./PreLoader";
-import { useRouter } from "next/router";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
